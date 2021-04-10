@@ -4,14 +4,14 @@ using DG.Tweening;
 
 namespace ProceduralLevel.UnityPlugins.Animation
 {
-	public class Animator
+	public class CustomAnimator
 	{
 		private AnimationManager m_Manager;
 
 		private readonly Stack<AAnimationPlayback> m_PendingAnimations = new Stack<AAnimationPlayback>();
 		private readonly List<AAnimationPlayback> m_ActiveAnimations = new List<AAnimationPlayback>();
 
-		public Animator(AnimationManager manager)
+		public CustomAnimator(AnimationManager manager)
 		{
 			m_Manager = manager;
 		}
