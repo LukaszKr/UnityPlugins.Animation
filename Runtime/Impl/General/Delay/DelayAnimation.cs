@@ -2,7 +2,7 @@
 
 namespace ProceduralLevel.UnityPlugins.Animation
 {
-	internal class DelayAnimation: AAnimation<DelayAnimationParameters>
+	internal class DelayAnimation : AAnimation<DelayAnimationParameters>
 	{
 		public static readonly DelayAnimation Instance = new DelayAnimation();
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ProceduralLevel.UnityPlugins.Animation
 {
-	public abstract class AAnimationObject<TParameters>: ScriptableObject, IAnimation<TParameters>
+	public abstract class AAnimationObject<TParameters> : ScriptableObject, IAnimation<TParameters>
 		where TParameters : class
 	{
 		public AAnimationPlayback GetPlayback(TParameters parameters, bool blocking)

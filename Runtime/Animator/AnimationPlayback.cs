@@ -2,7 +2,7 @@
 
 namespace ProceduralLevel.UnityPlugins.Animation
 {
-	public class AnimationPlayback<TParameters>: AAnimationPlayback
+	public class AnimationPlayback<TParameters> : AAnimationPlayback
 		where TParameters : class
 	{
 		private readonly IAnimation<TParameters> m_Animation;

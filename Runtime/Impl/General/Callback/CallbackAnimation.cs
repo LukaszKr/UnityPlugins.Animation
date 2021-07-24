@@ -2,7 +2,7 @@
 
 namespace ProceduralLevel.UnityPlugins.Animation
 {
-	internal class CallbackAnimation: AAnimation<CallbackAnimationParameters>
+	internal class CallbackAnimation : AAnimation<CallbackAnimationParameters>
 	{
 		public static readonly CallbackAnimation Instance = new CallbackAnimation();
 

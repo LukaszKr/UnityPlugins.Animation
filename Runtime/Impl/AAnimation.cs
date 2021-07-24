@@ -2,7 +2,7 @@
 
 namespace ProceduralLevel.UnityPlugins.Animation
 {
-	public abstract class AAnimation<TParameters>: IAnimation<TParameters>
+	public abstract class AAnimation<TParameters> : IAnimation<TParameters>
 		where TParameters : class
 	{
 		public AAnimationPlayback GetPlayback(TParameters parameters, bool blocking)

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace ProceduralLevel.UnityPlugins.Animation.Editor
 {
 	[CustomPropertyDrawer(typeof(AnimationParameter))]
-	public class AnimationParameterPropertyDrawer: AExtendedPropertyDrawer
+	public class AnimationParameterPropertyDrawer : AExtendedPropertyDrawer
 	{
 		private const float DASH_LENGTH = 1f;
 		private const float PREVIEW_LINES = 5f;
