@@ -1,6 +1,6 @@
 ﻿using DG.Tweening;
 using ProceduralLevel.UnityPlugins.Animation.Unity;
-using ProceduralLevel.UnityPlugins.Common;
+using ProceduralLevel.UnityPlugins.Common.Unity;
 using ProceduralLevel.UnityPlugins.ExtendedEditor.Editor;
 using UnityEditor;
 using UnityEngine;
