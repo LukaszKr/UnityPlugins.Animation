@@ -8,7 +8,7 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 	{
 		private AnimationManager m_Manager;
 
-		private readonly Stack<AAnimationPlayback> m_PendingAnimations = new Stack<AAnimationPlayback>();
+		private readonly Queue<AAnimationPlayback> m_PendingAnimations = new Queue<AAnimationPlayback>();
 		private readonly List<AAnimationPlayback> m_ActiveAnimations = new List<AAnimationPlayback>();
 
 		public CustomAnimator(AnimationManager manager)
@@ -25,7 +25,7 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 
 		public void Append(AAnimationPlayback playback)
 		{
-			m_PendingAnimations.Push(playback);
+			m_PendingAnimations.Enqueue(playback);
 			m_Manager.RegisterAnimation(playback);
 			TryPlayNextAnimation();
 		}
@@ -46,7 +46,7 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 		{
 			if(m_PendingAnimations.Count > 0 && !IsPlayingBlockingAnimation())
 			{
-				AAnimationPlayback playback = m_PendingAnimations.Pop();
+				AAnimationPlayback playback = m_PendingAnimations.Dequeue();
 				m_ActiveAnimations.Add(playback);
 				playback.Play(OnAnimationFinishedHandler);
 				if(playback.IsFinished)
