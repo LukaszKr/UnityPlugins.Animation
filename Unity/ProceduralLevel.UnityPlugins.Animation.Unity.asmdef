@@ -1,5 +1,6 @@
 {
     "name": "ProceduralLevel.UnityPlugins.Animation.Unity",
+    "rootNamespace": "ProceduralLevel.UnityPlugins.Animation.Unity",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
