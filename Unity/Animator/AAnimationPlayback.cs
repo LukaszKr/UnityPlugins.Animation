@@ -15,8 +15,8 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 		public readonly CustomEvent<AAnimationPlayback> OnStarted = new CustomEvent<AAnimationPlayback>();
 		public readonly CustomEvent<AAnimationPlayback> OnFinished = new CustomEvent<AAnimationPlayback>();
 
-		public bool IsActive { get { return m_Status > EPlaybackStatus.Active; } }
-		public bool IsFinished { get { return m_Status == EPlaybackStatus.Finished; } }
+		public bool IsActive => m_Status > EPlaybackStatus.Active;
+		public bool IsFinished => m_Status == EPlaybackStatus.Finished;
 
 		protected AAnimationPlayback(bool blocking)
 		{
