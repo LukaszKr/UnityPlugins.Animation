@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Diagnostics;
+using DG.Tweening;
 
 namespace ProceduralLevel.UnityPlugins.Animation.Unity
 {
@@ -8,6 +9,7 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 		private readonly IAnimation<TParameters> m_Animation;
 		private readonly TParameters m_Parameters;
 
+		[DebuggerStepThrough]
 		public AnimationPlayback(IAnimation<TParameters> animation, TParameters parameters, bool blocking = false)
 			: base(blocking)
 		{

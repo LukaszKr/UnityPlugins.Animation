@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Diagnostics;
+using DG.Tweening;
 using UnityEngine;
 
 namespace ProceduralLevel.UnityPlugins.Animation.Unity
@@ -6,6 +7,7 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 	public abstract class AAnimationObject<TParameters> : ScriptableObject, IAnimation<TParameters>
 		where TParameters : class
 	{
+		[DebuggerStepThrough]
 		public AAnimationPlayback GetPlayback(TParameters parameters, bool blocking)
 		{
 			return new AnimationPlayback<TParameters>(this, parameters, blocking);

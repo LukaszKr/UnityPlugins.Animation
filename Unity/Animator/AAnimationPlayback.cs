@@ -8,29 +8,45 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 	{
 		private Sequence m_Sequence;
 		private EPlaybackStatus m_Status;
-		private Action<AAnimationPlayback> m_OnFinishedCallback;
+		private int m_Locked;
 
 		public readonly bool Blocking = false;
 
-		public readonly CustomEvent<AAnimationPlayback> OnStarted = new CustomEvent<AAnimationPlayback>();
 		public readonly CustomEvent<AAnimationPlayback> OnFinished = new CustomEvent<AAnimationPlayback>();
+		public readonly CustomEvent OnUnlocked = new CustomEvent();
 
+		public bool IsLocked => m_Locked > 0;
 		public bool IsActive => m_Status > EPlaybackStatus.Active;
 		public bool IsFinished => m_Status == EPlaybackStatus.Finished;
+
 
 		protected AAnimationPlayback(bool blocking)
 		{
 			Blocking = blocking;
 		}
 
-		internal void Play(Action<AAnimationPlayback> onFinishedCallback)
+		internal void SetLocked(bool locked)
+		{
+			if(locked)
+			{
+				m_Locked++;
+			}
+			else
+			{
+				m_Locked--;
+				if(m_Locked == 0)
+				{
+					OnUnlocked.Invoke();
+				}
+			}
+		}
+
+		internal void Play()
 		{
 			if(m_Status != EPlaybackStatus.Pending)
 			{
 				throw new InvalidOperationException();
 			}
-
-			m_OnFinishedCallback = onFinishedCallback;
 
 			SetStatus(EPlaybackStatus.Active);
 			m_Sequence = OnPlay();
@@ -56,30 +72,23 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 				throw new InvalidOperationException();
 			}
 			m_Status = newStatus;
-			switch(newStatus)
+			if(newStatus == EPlaybackStatus.Finished)
 			{
-				case EPlaybackStatus.Active:
-					OnStarted.Invoke(this);
-					break;
-				case EPlaybackStatus.Finished:
-					OnFinished.Invoke(this);
-					Cleanup();
-					break;
+				OnFinished.Invoke(this);
+				Cleanup();
 			}
 		}
 
 		private void Cleanup()
 		{
+			OnUnlocked.RemoveAllListeners();
 			OnFinished.RemoveAllListeners();
-			OnStarted.RemoveAllListeners();
-			m_OnFinishedCallback = null;
 			m_Sequence = null;
 		}
 
 		#region Callbacks
 		private void OnCompleteHandler()
 		{
-			m_OnFinishedCallback(this);
 			SetStatus(EPlaybackStatus.Finished);
 		}
 		#endregion

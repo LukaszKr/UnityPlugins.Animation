@@ -6,28 +6,15 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 {
 	public class CustomAnimator
 	{
-		private AnimationManager m_Manager;
-
 		private readonly Queue<AAnimationPlayback> m_PendingAnimations = new Queue<AAnimationPlayback>();
 		private readonly List<AAnimationPlayback> m_ActiveAnimations = new List<AAnimationPlayback>();
 
-		public CustomAnimator(AnimationManager manager)
-		{
-			m_Manager = manager;
-		}
-
-		public void Append<TParameters>(IAnimation<TParameters> animation, TParameters parameters, bool blocking = false)
+		public AAnimationPlayback Append<TParameters>(IAnimation<TParameters> animation, TParameters parameters, bool blocking = false)
 			where TParameters : class
 		{
 			AAnimationPlayback playback = animation.GetPlayback(parameters, blocking);
-			Append(playback);
-		}
-
-		public void Append(AAnimationPlayback playback)
-		{
 			m_PendingAnimations.Enqueue(playback);
-			m_Manager.RegisterAnimation(playback);
-			TryPlayNextAnimation();
+			return playback;
 		}
 
 		public void Abort()
@@ -42,13 +29,20 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 			m_ActiveAnimations.Clear();
 		}
 
-		private bool TryPlayNextAnimation()
+		public bool TryPlayNextAnimation()
 		{
 			if(m_PendingAnimations.Count > 0 && !IsPlayingBlockingAnimation())
 			{
-				AAnimationPlayback playback = m_PendingAnimations.Dequeue();
+				AAnimationPlayback playback = m_PendingAnimations.Peek();
+				if(playback.IsLocked)
+				{
+					playback.OnUnlocked.AddListener(OnPlaybackUnlockedHandler);
+					return false;
+				}
+				m_PendingAnimations.Dequeue();
 				m_ActiveAnimations.Add(playback);
-				playback.Play(OnAnimationFinishedHandler);
+				playback.OnFinished.AddListener(OnAnimationFinishedHandler);
+				playback.Play();
 				if(playback.IsFinished)
 				{
 					TryPlayNextAnimation();
@@ -86,6 +80,11 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 		#endregion
 
 		#region Callbacks
+		private void OnPlaybackUnlockedHandler()
+		{
+			TryPlayNextAnimation();
+		}
+
 		private void OnAnimationFinishedHandler(AAnimationPlayback playback)
 		{
 			if(!m_ActiveAnimations.Remove(playback))

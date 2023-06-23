@@ -18,11 +18,6 @@ namespace ProceduralLevel.UnityPlugins.Animation.Unity
 			return this;
 		}
 
-		public Tween LocalMoveTween(Transform transform, float duration)
-		{
-			return Tween((position) => transform.localPosition = position, duration);
-		}
-
 		public Tween Tween(Action<Vector3> setter, float duration)
 		{
 			float t = 0f;
