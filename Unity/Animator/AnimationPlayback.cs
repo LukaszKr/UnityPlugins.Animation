@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using DG.Tweening;
 
-namespace ProceduralLevel.UnityPlugins.Animation.Unity
+namespace ProceduralLevel.Animation.Unity
 {
 	public class AnimationPlayback<TParameters> : AAnimationPlayback
 		where TParameters : class

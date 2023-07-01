@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ProceduralLevel.UnityPlugins.Animation.Unity
+namespace ProceduralLevel.Animation.Unity
 {
 	public class AnimationResource
 	{

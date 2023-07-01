@@ -2,7 +2,7 @@
 using DG.Tweening;
 using ProceduralLevel.Common.Event;
 
-namespace ProceduralLevel.UnityPlugins.Animation.Unity
+namespace ProceduralLevel.Animation.Unity
 {
 	public abstract class AAnimationPlayback
 	{

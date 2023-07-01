@@ -1,7 +1,7 @@
 ﻿using System;
 using DG.Tweening;
 
-namespace ProceduralLevel.UnityPlugins.Animation.Unity
+namespace ProceduralLevel.Animation.Unity
 {
 	public class SequenceAnimation
 	{

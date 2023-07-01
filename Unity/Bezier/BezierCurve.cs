@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-namespace ProceduralLevel.UnityPlugins.Animation.Unity
+namespace ProceduralLevel.Animation.Unity
 {
 	[Serializable]
 	public class BezierCurve

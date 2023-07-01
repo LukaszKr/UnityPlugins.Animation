@@ -1,6 +1,6 @@
 ﻿using DG.Tweening;
 
-namespace ProceduralLevel.UnityPlugins.Animation.Unity
+namespace ProceduralLevel.Animation.Unity
 {
 	public interface IAnimation<TParameters>
 		where TParameters : class

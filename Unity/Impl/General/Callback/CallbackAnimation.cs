@@ -1,6 +1,6 @@
 ﻿using DG.Tweening;
 
-namespace ProceduralLevel.UnityPlugins.Animation.Unity
+namespace ProceduralLevel.Animation.Unity
 {
 	internal class CallbackAnimation : AAnimation<CallbackAnimationParameters>
 	{

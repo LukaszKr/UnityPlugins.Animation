@@ -1,11 +1,11 @@
 ﻿using DG.Tweening;
-using ProceduralLevel.UnityPlugins.Animation.Unity;
-using ProceduralLevel.UnityPlugins.Common.Editor;
-using ProceduralLevel.UnityPlugins.Common.Unity;
+using ProceduralLevel.Animation.Unity;
+using ProceduralLevel.Common.Editor;
+using ProceduralLevel.Common.Unity;
 using UnityEditor;
 using UnityEngine;
 
-namespace ProceduralLevel.UnityPlugins.Animation.Editor
+namespace ProceduralLevel.Animation.Editor
 {
 	[CustomPropertyDrawer(typeof(AnimationParameter))]
 	public class AnimationParameterPropertyDrawer : AExtendedPropertyDrawer

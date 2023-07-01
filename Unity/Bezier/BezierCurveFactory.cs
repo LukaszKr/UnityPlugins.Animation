@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ProceduralLevel.UnityPlugins.Animation.Unity
+namespace ProceduralLevel.Animation.Unity
 {
 	public static class BezierCurveFactory
 	{

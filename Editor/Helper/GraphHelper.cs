@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace ProceduralLevel.UnityPlugins.Animation.Editor
+namespace ProceduralLevel.Animation.Editor
 {
 	public static class GraphHelper
 	{

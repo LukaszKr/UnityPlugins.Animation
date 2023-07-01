@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace ProceduralLevel.UnityPlugins.Animation.Unity
+namespace ProceduralLevel.Animation.Unity
 {
 	public abstract class AAnimationObject<TParameters> : ScriptableObject, IAnimation<TParameters>
 		where TParameters : class
